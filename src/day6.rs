@@ -61,6 +61,7 @@ mod tests {
     }
     #[test]
     fn samples_part1() {
+        //
         //bvwbjplbgvbhsrlpgdmjqwftvncz: first marker after character 5
         // nppdvjthqldpwncqszvftbrmjlhg: first marker after character 6
         // nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg: first marker after character 10
