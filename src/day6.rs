@@ -54,10 +54,10 @@ mod tests {
     fn samples_part2() {
         let mut s = Stream::new("mjqjpqmgbljsphdztnvjfqwrcgsmlb");
         let x = s.process(14);
-        println!("{x}");
+        assert_eq!(19, x);
         let mut s = Stream::new("bvwbjplbgvbhsrlpgdmjqwftvncz");
         let x = s.process(14);
-        println!("{x}");
+        assert_eq!(23, x);
     }
     #[test]
     fn samples_part1() {
@@ -67,17 +67,17 @@ mod tests {
         // zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw: first marker after character 11
         let mut s = Stream::new("bvwbjplbgvbhsrlpgdmjqwftvncz");
         let x = s.process(4);
-        println!("{x}");
+        assert_eq!(5, x);
         let mut s = Stream::new("nppdvjthqldpwncqszvftbrmjlhg");
         let x = s.process(4);
-        println!("{x}");
+        assert_eq!(6, x);
 
         let mut s = Stream::new("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg");
         let x = s.process(4);
-        println!("{x}");
+        assert_eq!(10, x);
 
         let mut s = Stream::new("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw");
         let x = s.process(4);
-        println!("{x}");
+        assert_eq!(11, x);
     }
 }
