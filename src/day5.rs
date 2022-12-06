@@ -69,7 +69,7 @@ struct Stack<T> {
 impl<T> Stack<T> {
     pub fn new(id: usize) -> Stack<T> {
         Self {
-            id: id,
+            id,
             items: Vec::new(),
         }
     }
@@ -116,7 +116,7 @@ impl<T: Debug> Cargo<T> {
         message
     }
     fn push(&mut self, stack_id: usize, items: Vec<T>) {
-        let mut stack = self.stacks.get_mut(stack_id).unwrap();
+        let stack = self.stacks.get_mut(stack_id).unwrap();
         for item in items {
             stack.push(item);
         }
@@ -125,7 +125,7 @@ impl<T: Debug> Cargo<T> {
     fn pop(&mut self, stack_id: usize, count: usize) -> Vec<T> {
         let mut values = Vec::new();
         let stack = self.stacks.get_mut(stack_id).unwrap();
-        for i in 0..count {
+        for _i in 0..count {
             values.push(stack.pop())
         }
         values
@@ -157,7 +157,7 @@ fn setup_cargo() -> Cargo<char> {
 }
 #[cfg(test)]
 mod tests {
-    use crate::day5::{parse_line, setup_cargo, Cargo, Stack};
+    use crate::day5::{parse_line, setup_cargo, Cargo, Crane, Stack};
     use load_file::load_str;
     use std::env::VarError;
 
@@ -172,18 +172,18 @@ mod tests {
     fn parse() {
         let a = parse_line("move 1 from 2 to 1");
         assert_eq!(a.quantity, 1);
-        assert_eq!(a.from, 2);
-        assert_eq!(a.to, 1);
+        assert_eq!(a.from, 1);
+        assert_eq!(a.to, 0);
 
         let a = parse_line("move 6 from 3 to 5");
         assert_eq!(a.quantity, 6);
-        assert_eq!(a.from, 3);
-        assert_eq!(a.to, 5);
+        assert_eq!(a.from, 2);
+        assert_eq!(a.to, 4);
 
         let a = parse_line("move 3 from 3 to 12");
         assert_eq!(a.quantity, 3);
-        assert_eq!(a.from, 3);
-        assert_eq!(a.to, 12);
+        assert_eq!(a.from, 2);
+        assert_eq!(a.to, 11);
     }
     #[test]
     fn read_input() {
@@ -234,13 +234,13 @@ mod tests {
         c.push(2, ['P'].to_vec());
 
         //move 1 from 2 to 1
-        c.move_items(1, 2 - 1, 1 - 1);
+        c.move_items(1, 2 - 1, 1 - 1, &Crane::CrateMover9000);
         // move 3 from 1 to 3
-        c.move_items(3, 1 - 1, 3 - 1);
+        c.move_items(3, 1 - 1, 3 - 1, &Crane::CrateMover9000);
         // move 2 from 2 to 1
-        c.move_items(2, 2 - 1, 1 - 1);
+        c.move_items(2, 2 - 1, 1 - 1, &Crane::CrateMover9000);
         // move 1 from 1 to 2
-        c.move_items(1, 1 - 1, 2 - 1);
+        c.move_items(1, 1 - 1, 2 - 1, &Crane::CrateMover9000);
         println!("{:?}", c);
         println!("{:?}", c.get_message().into_iter().collect::<String>());
     }

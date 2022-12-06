@@ -1,6 +1,5 @@
 use crate::{LOWER, UPPER};
 use load_file::load_str;
-use std::ops::Index;
 
 #[derive(Debug, Clone)]
 struct RuckSack {
